@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   min-width: 320px;
   min-height: 100vh;
@@ -25,12 +29,16 @@ input {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .app {
   width: min(100%, 1100px);
   min-height: 600px;
   margin: 0 auto;
   padding: 48px;
-  background: rgb(255 255 255 / 85%);
+  background: rgb(255 255 255 / 88%);
   border: 1px solid rgb(255 255 255 / 70%);
   border-radius: 28px;
   box-shadow: 0 24px 70px rgb(30 41 59 / 12%);
@@ -39,6 +47,14 @@ input {
 
 .header {
   margin-bottom: 36px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #4f46e5;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .title {
@@ -65,8 +81,15 @@ input {
   font-weight: 700;
 }
 
+.search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
 .search-input {
   width: 100%;
+  min-width: 0;
   padding: 18px 20px;
   color: #172033;
   background: #fff;
@@ -87,8 +110,34 @@ input {
   box-shadow: 0 0 0 4px rgb(99 102 241 / 15%);
 }
 
+.search-button,
+.retry-button {
+  padding: 14px 22px;
+  color: #fff;
+  font-weight: 800;
+  background: #4f46e5;
+  border: 0;
+  border-radius: 14px;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.search-button:hover,
+.retry-button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.feedback {
+  display: flex;
+  min-height: 74px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .status {
-  min-height: 24px;
   margin: 24px 0;
   color: #64748b;
 }
@@ -97,6 +146,141 @@ input {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+}
+
+.country-card {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 18px;
+  align-items: center;
+  width: 100%;
+  padding: 18px;
+  color: inherit;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgb(30 41 59 / 7%);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.country-card:hover,
+.country-card:focus-visible {
+  border-color: #818cf8;
+  box-shadow: 0 16px 36px rgb(79 70 229 / 14%);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.country-flag {
+  width: 88px;
+  height: 62px;
+  object-fit: cover;
+  background: #f1f5f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgb(15 23 42 / 12%);
+}
+
+.country-card-content {
+  display: grid;
+  gap: 5px;
+}
+
+.country-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.country-summary,
+.country-population {
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.country-dialog {
+  width: min(92vw, 660px);
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.country-dialog::backdrop {
+  background: rgb(15 23 42 / 65%);
+  backdrop-filter: blur(5px);
+}
+
+.dialog-panel {
+  position: relative;
+  padding: 34px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgb(15 23 42 / 30%);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 12px;
+  color: #475569;
+  background: #f1f5f9;
+  border: 0;
+  border-radius: 10px;
+}
+
+.dialog-content {
+  display: grid;
+  gap: 18px;
+}
+
+.dialog-flag {
+  width: 132px;
+  height: 88px;
+  object-fit: cover;
+  background: #f1f5f9;
+  border-radius: 14px;
+}
+
+.dialog-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.dialog-description {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.detail-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+.fact {
+  padding: 14px;
+  background: #f8fafc;
+  border-radius: 14px;
+}
+
+.fact-label {
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.fact-value {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: 700;
 }
 
 @media (max-width: 600px) {
@@ -108,5 +292,26 @@ input {
     min-height: calc(100vh - 32px);
     padding: 28px 20px;
     border-radius: 20px;
+  }
+
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .country-card {
+    grid-template-columns: 72px 1fr;
+  }
+
+  .country-flag {
+    width: 72px;
+    height: 52px;
+  }
+
+  .dialog-panel {
+    padding: 28px 20px;
+  }
+
+  .detail-facts {
+    grid-template-columns: 1fr;
   }
 }

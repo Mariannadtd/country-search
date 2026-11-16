@@ -8,16 +8,17 @@ export interface RawCurrency {
 
 export interface RawCountry {
   readonly name: string;
-  readonly capital: string;
-  readonly region: string;
-  readonly population: number;
-  readonly area: number;
-  readonly flags: {
-    readonly svg: string;
+  readonly capital?: string;
+  readonly region?: string;
+  readonly population?: number;
+  readonly area?: number;
+  readonly flags?: {
+    readonly svg?: string;
+    readonly png?: string;
   };
-  readonly languages: readonly RawLanguage[];
-  readonly currencies: readonly RawCurrency[];
-  readonly borders: readonly string[];
+  readonly languages?: readonly RawLanguage[];
+  readonly currencies?: readonly RawCurrency[];
+  readonly borders?: readonly string[];
 }
 
 export interface Country {
