@@ -1,16 +1,30 @@
 {
   "name": "country-search",
   "version": "1.0.0",
-  "description": "",
+  "description": "Live country search with request cancellation and timeout handling",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "vitest run --passWithNoTests",
     "build": "tsc",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:watch": "vitest"
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "prepare": "husky"
   },
-  "keywords": [],
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{html,json,md,css}": "prettier --write"
+  },
+  "keywords": [
+    "typescript",
+    "abort-controller",
+    "tdd"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -23,7 +37,5 @@
     "typescript": "5.9.3",
     "typescript-eslint": "8.46.4",
     "vitest": "4.0.9"
-  },
-  "private": true,
-  "type": "module"
+  }
 }
